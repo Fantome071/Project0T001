@@ -13,9 +13,13 @@ namespace Bibliotheque
         public Stats[] _PartieStats { get; set; }
         public bool[] _Victoires { get; set; }
 
-        public Resultat()
+        public Resultat(int nbPartie)
         {
+            _nbPartie = nbPartie;
+            _nbPartieJoue = 1;
 
+            _PartieStats = new Stats[_nbPartie];
+            _Victoires = new bool[_nbPartie];
         }
     }
 }

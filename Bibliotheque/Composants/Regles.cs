@@ -10,9 +10,16 @@ namespace Bibliotheque
     {
         public string _livreDesRegles { get; }
 
-        public Regles()
+        public Regles(bool modeComplet)
         {
-            _livreDesRegles = "Listes des règles :";
+            if (modeComplet == true)
+            {
+                _livreDesRegles = "Listes des règles (avec règles pour mode complet) :";
+            }
+            else
+            {
+                _livreDesRegles = "Listes des règles :";
+            }
         }
     }
 }
