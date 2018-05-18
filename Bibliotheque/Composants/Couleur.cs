@@ -18,7 +18,7 @@ namespace Bibliotheque
 
         public string GetNomCouleur()
         {
-            string couleur = "Error";
+            string couleur;
 
             switch (_couleur)
             {
@@ -33,6 +33,9 @@ namespace Bibliotheque
                     break;
                 case 4:
                     couleur = "Vert";
+                    break;
+                default:
+                    couleur = "Erreur";
                     break;
             }
 

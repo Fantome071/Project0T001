@@ -41,13 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coordonnee.cs" />
-    <Compile Include="Emplacement.cs" />
+    <Compile Include="CartesObjectifs\CartesObjectifs.cs" />
+    <Compile Include="CartesObjectifs\PackCartesObjectifs.cs" />
+    <Compile Include="Composants\Joueur.cs" />
+    <Compile Include="Composants\Regles.cs" />
+    <Compile Include="Tuile\Coordonnee.cs" />
+    <Compile Include="Tuile\Emplacement.cs" />
     <Compile Include="Composants\Couleur.cs" />
     <Compile Include="Composants\Plateau.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resultat.cs" />
-    <Compile Include="Stats.cs" />
+    <Compile Include="Composants\Resultat.cs" />
+    <Compile Include="Composants\Stats.cs" />
     <Compile Include="ThePhantomSociety.cs" />
     <Compile Include="Tuile\Tuile.cs" />
     <Compile Include="Tuile\TuileFantome.cs" />

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Bibliotheque
 {
-    class Resultat
+    class Joueur
     {
-    
+
     }
 }

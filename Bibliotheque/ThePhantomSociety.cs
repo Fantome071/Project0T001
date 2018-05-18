@@ -15,7 +15,7 @@ namespace Bibliotheque
         public Resultat _resultatJeu { get; set; }
 
         public bool _modeComplet { get; }
-        public PackCarteObjectifs _packCarteObjectifs { get; set; }
+        public PackCartesObjectifs _packCartesObjectifs { get; set; }
 
         public Regles _regles { get; set; }
 
