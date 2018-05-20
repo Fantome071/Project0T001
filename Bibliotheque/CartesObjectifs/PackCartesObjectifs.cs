@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bibliotheque
 {
-    class PackCartesObjectifs
+    public class PackCartesObjectifs
     {
         public CartesObjectifs[] _cartesObjectifsDizaines { get; }
         public CartesObjectifs[] _cartesObjectifsMilliers { get; }

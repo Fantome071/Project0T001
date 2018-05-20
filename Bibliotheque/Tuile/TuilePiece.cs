@@ -13,8 +13,6 @@ namespace Bibliotheque
 
         public TuilePiece(Couleur couleur, int valeur) : base(couleur)
         {
-            _emplacement._coordonnee.SetNull();
-
             _valeur = valeur;
             _devaste = false;
         }

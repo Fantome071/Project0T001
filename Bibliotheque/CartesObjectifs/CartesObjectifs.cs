@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bibliotheque
 {
-    class CartesObjectifs
+    public class CartesObjectifs
     {
         public string _nomCarte { get; set; }
         public int _valeurCarte { get; set; }

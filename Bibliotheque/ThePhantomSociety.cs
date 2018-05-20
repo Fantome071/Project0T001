@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bibliotheque
 {
-    class ThePhantomSociety
+    public class ThePhantomSociety
     {
         public int _nbJoueurs { get; }
         public Joueur[] _JoueursJeu { get; set; }
@@ -44,7 +44,7 @@ namespace Bibliotheque
             }
         }
 
-        public void GetRoleAleatoire(ref bool[] role)
+        public void GetRoleAleatoire(bool[] role)
         {
             Random Aleatoire = new Random();
             int nombreAleatoire;
@@ -79,6 +79,41 @@ namespace Bibliotheque
                     role[nombreAleatoire] = true;
                 }
             }
+        }
+
+        public bool DevasterPiece(int x, int y, bool fantome)
+        {
+            bool codeRetour = false;
+
+            if (_plateauJeu._plateau[x, y]._devaste == false)
+            {
+                if (fantome == false)
+                {
+                    _plateauJeu._plateau[x, y]._devaste = true;
+                    codeRetour = true;
+                }
+                else
+                {
+                    bool devasterPossible = false;
+
+                    if (devasterPossible == true)
+                    {
+                        _plateauJeu._plateau[x, y]._devaste = true;
+                        codeRetour = true;
+                    }
+                }
+
+                if (_plateauJeu._plateau[x, y]._emplacement._tuileFantome == true)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (_plateauJeu._tuileFantome[i]._emplacement == _plateauJeu._plateau[x, y]._emplacement)
+                            _plateauJeu._tuileFantome[i]._etat = false;
+                    }
+                }
+            }
+
+            return codeRetour;
         }
 
         public void ResetJeu()

@@ -13,8 +13,8 @@ namespace Bibliotheque
 
         public Tuile(Couleur couleur)
         {
-            _couleur = couleur;
-            _emplacement._coordonnee.SetNull();
+            _couleur = new Couleur(couleur._couleur);
+            _emplacement = new Emplacement();
         }
     }
 }

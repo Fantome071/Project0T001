@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bibliotheque
 {
-    class Resultat
+    public class Resultat
     {
         public int _nbPartie { get; }
         public int _nbPartieJoue { get; set; }

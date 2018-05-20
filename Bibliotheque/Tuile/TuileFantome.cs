@@ -12,8 +12,6 @@ namespace Bibliotheque
 
         public TuileFantome(Couleur couleur) : base(couleur)
         {
-            _emplacement._coordonnee.SetNull();
-
             _etat = true;
         }
     }

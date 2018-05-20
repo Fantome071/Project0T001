@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bibliotheque
 {
-    class Stats
+    public class Stats
     {
         public int _objectif { get; }
 

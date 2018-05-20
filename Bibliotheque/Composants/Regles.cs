@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bibliotheque
 {
-    class Regles
+    public class Regles
     {
         public string _livreDesRegles { get; }
 

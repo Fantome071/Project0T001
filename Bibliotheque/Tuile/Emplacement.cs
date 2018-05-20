@@ -16,7 +16,8 @@ namespace Bibliotheque
 
         public Emplacement()
         {
-            _coordonnee.SetNull();
+            _coordonnee = new Coordonnee(0, 0);
+
             _tuileFantome = false;
             _tuilePiece = false;
         }
