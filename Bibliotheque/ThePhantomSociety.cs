@@ -81,34 +81,48 @@ namespace Bibliotheque
             }
         }
 
-        public bool DevasterPiece(int x, int y, bool fantome)
+        public void PlacerPiece(TuilePiece piece)
+        {
+            piece._placer = true;
+            _plateauJeu._plateau[piece._emplacement._coordonnee._x, piece._emplacement._coordonnee._y] = piece;
+        }
+
+        public void PlacerLesFantomes()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (_plateauJeu._tuileFantome[i]._placer == false)
+                {
+                    _plateauJeu._plateau[_plateauJeu._tuileFantome[i]._emplacement._coordonnee._x, _plateauJeu._tuileFantome[i]._emplacement._coordonnee._y]._emplacement._tuileFantome = true;
+                    _plateauJeu._tuileFantome[i]._placer = true;
+                }
+            }
+        }
+
+        public bool DevasterPiece(int x, int y)
         {
             bool codeRetour = false;
 
             if (_plateauJeu._plateau[x, y]._devaste == false)
             {
-                if (fantome == false)
+                if (_plateauJeu._plateau[x, y]._emplacement._tuileFantome == false)
                 {
                     _plateauJeu._plateau[x, y]._devaste = true;
+                    _resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._degatsActuels = _resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._degatsActuels + _plateauJeu._plateau[x, y]._valeur;
+                    FinJeu();
                     codeRetour = true;
                 }
                 else
                 {
-                    bool devasterPossible = false;
-
-                    if (devasterPossible == true)
-                    {
-                        _plateauJeu._plateau[x, y]._devaste = true;
-                        codeRetour = true;
-                    }
-                }
-
-                if (_plateauJeu._plateau[x, y]._emplacement._tuileFantome == true)
-                {
                     for (int i = 0; i < 4; i++)
                     {
-                        if (_plateauJeu._tuileFantome[i]._emplacement == _plateauJeu._plateau[x, y]._emplacement)
+                        if (_plateauJeu._tuileFantome[i]._emplacement._coordonnee == _plateauJeu._plateau[x, y]._emplacement._coordonnee)
+                        {
                             _plateauJeu._tuileFantome[i]._etat = false;
+                            UpdateStatsFantome();
+                            FinJeu();
+                            codeRetour = true;
+                        }
                     }
                 }
             }
@@ -116,9 +130,67 @@ namespace Bibliotheque
             return codeRetour;
         }
 
+        public void UpdateStatsFantome()
+        {
+            int compteurFantome = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (_plateauJeu._tuileFantome[i]._etat == false)
+                {
+                    compteurFantome = compteurFantome - 1;
+                    _resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._fantomeRestant[i] = _plateauJeu._tuileFantome[i];
+                }
+            }
+
+            _resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._nbFantomeRestant = compteurFantome;
+        }
+
+        public void UpdateStatsDegats()
+        {
+            int compteurDegats = 0;
+
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (_plateauJeu._plateau[i, j]._devaste == true)
+                        compteurDegats = compteurDegats + _plateauJeu._plateau[i, j]._valeur;
+                }
+            }
+
+            _resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._degatsActuels = compteurDegats;
+        }
+
+        public void FinJeu()
+        {
+            if (_resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._degatsActuels >= _resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._objectif)
+            {
+                _resultatJeu._Victoires[_resultatJeu._nbPartieJoue - 1] = true;
+                
+                for (int i = 0; i < _nbJoueurs; i++)
+                {
+                    if (_JoueursJeu[i]._role == false)
+                        _JoueursJeu[i]._partieGagner = _JoueursJeu[i]._partieGagner + 1;
+                }
+            }
+
+            if (_resultatJeu._PartieStats[_resultatJeu._nbPartieJoue - 1]._nbFantomeRestant == 0)
+            {
+                _resultatJeu._Victoires[_resultatJeu._nbPartieJoue - 1] = false;
+
+                for (int i = 0; i < _nbJoueurs; i++)
+                {
+                    if (_JoueursJeu[i]._role == true)
+                        _JoueursJeu[i]._partieGagner = _JoueursJeu[i]._partieGagner + 1;
+                }
+            }
+        }
+
         public void ResetJeu()
         {
             _resultatJeu._nbPartieJoue = _resultatJeu._nbPartieJoue + 1;
+            _plateauJeu = new Plateau();
         }
     }
 }

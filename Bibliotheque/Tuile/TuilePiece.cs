@@ -13,6 +13,7 @@ namespace Bibliotheque
 
         public TuilePiece(Couleur couleur, int valeur) : base(couleur)
         {
+            _emplacement._tuilePiece = true;
             _valeur = valeur;
             _devaste = false;
         }

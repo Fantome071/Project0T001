@@ -12,6 +12,7 @@ namespace Bibliotheque
 
         public TuileFantome(Couleur couleur) : base(couleur)
         {
+            _emplacement._tuileFantome = true;
             _etat = true;
         }
     }
